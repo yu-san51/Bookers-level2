@@ -1,0 +1,19 @@
+<%= render "book/user_create", book: @book,user: @user %>
+
+<h2>Book detail</h2>
+<table>
+	<tbody>
+		<tr>
+			<% @users.each do |user| %>
+				<td><%= user.profile_image_id %></td>
+			<% end %>
+			<% @books.each do |book| %>
+				<td><%= book.title %></td>
+				<td><%= book.body %></td>
+				<% if book.user == current_user%>
+				<td><%= link_to "edit", edit_book_path %></td>
+				<td><%= link_to "destroy", book_path(book), method: :delete %></td>
+			<% end %>
+		</tr>
+	</tbody>
+</table>
