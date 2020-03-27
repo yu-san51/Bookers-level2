@@ -20,12 +20,6 @@
 				<tr>
 					<td><%= book.title %></td>
 					<td><%= book.body %></td>
-					<td>
-						<% if book.user == current.user %>
-						<%= link_to "edit", edit_book_path%>
-						<%= link_to "delete",book_path(book), method: :delete %>
-						<% end %>
-					</td>
 				</tr>
 				<% end %>
 			</tbody>
