@@ -5,15 +5,18 @@
 	<caption>User info</caption>
 	<tbody>
 		<tr>
-			<td><%= user.profile_image_id %></td><td></td>
+			<td><%= attachment_image_tag user, :profile_image, size:"100x100", format:"jpeg", fallback:"no_image.jpg" %></td><td></td>
+		</tr>
+		<tr>
 			<td>name</td><td><%= user.name %></td>
+		</tr>
+		<tr>
 			<td>introduction</td><td><%= user.introduction %></td>
 		</tr>
 	</tbody>
 </table>
-<div class="btn">
-	<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
-	<%= link_to "", edit_user_registration_path %>
+<div class="row">
+	<%= link_to "", edit_user_path, class:"btn btn-deault glyphicon glyphicon-wrench" %>
 </div>
 
 
