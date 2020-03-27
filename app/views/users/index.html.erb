@@ -11,12 +11,12 @@
 		</tr>
 	</thead>
 	<tbody>
-		<%= @users.each do |user| %>
+		<% @users.each do |user| %>
 		<tr>
-			<td><%= user.profile_image %></td>
+			<td><%= attachment_image_tag user, :profile_image, size:"100x100" %></td>
 			<td><%= user.name %></td>
 			<td></td>
-			<td><%= link_to "Show", user_path %></td>
+			<td><%= link_to "Show", user_path(user.id) %></td>
 		</tr>
 		<% end %>
 	</tbody>
