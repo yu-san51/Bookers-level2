@@ -44,12 +44,8 @@
   </nav>
 
         <!--エラー、サクセスフラッシュ-->
-  <% flash.each do |key, msg| %>
-     <div id="alert" class="col-xs-11 alert alert-<%= bootstrap_class_for(key) %> alert-dismissible fade" >
-      <a class="close" data-dismiss="alert" aria-label="Close">×</a>
-      <%= msg %>
-    </div>
-  <% end %>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
 
     <%= yield %>
 
