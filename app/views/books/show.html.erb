@@ -1,16 +1,22 @@
-<%= render "books/user_create", book: @book, user: @user %>
-
-<h2>Book detail</h2>
-<table class="table">
-	<tbody>
-		<tr>
-			<td><%= attachment_image_tag @book, :profile_image %></td>
-			<td><%= @book.title %></td>
-			<td><%= @book.body %></td>
-			<% if @book.user == current_user %>
-				<td><%= link_to "edit", edit_book_path(@book) %></td>
-				<td><%= link_to "destroy", book_path(@book), method: :delete %></td>
-			<% end %>
-		</tr>
-	</tbody>
-</table>
+<div class="container">
+	<div class="row">
+		<%= render "books/user_create", book: @book, user: @user %>
+		<div class="col-xs-9">
+			<h2>Book detail</h2>
+			<table class="table">
+				<tbody>
+					<tr>
+						<td><%= attachment_image_tag @book, :profile_image %></td>
+						<td><%= link_to "#{@book.title}", book_path(@book) %></td>
+						<td><%= @book.body %></td>
+						<!--edit.destroy-->
+						<% if @book.user == current_user %>
+						<td><%= link_to "edit", edit_book_path(@book) %></td>
+						<td><%= link_to "destroy", book_path(@book), method: :delete %></td>
+					<% end %>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
