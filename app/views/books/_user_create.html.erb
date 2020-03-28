@@ -4,18 +4,19 @@
 	<table class="table">
 		<tbody>
 			<tr>
-				<td><%= attachment_image_tag user, :profile_image, size:"100x100", format:"jpeg" %></td>
+				<td><%= attachment_image_tag @user, :profile_image, size:"100x100", format:"jpeg", fallback: "no_image.jpg" %></td>
 				<td></td>
 			</tr>
 			<tr></tr>
 			<tr>
 				<td>name</td>
-				<td><%= user.name %></td>
+				<td><%= @user.name %></td>
 			</tr>
 			<tr>
 				<td>introduction</td>
-				<td><%= user.introduction %></td>
+				<td><%= @user.introduction %></td>
 			</tr>
+
 		</tbody>
 	</table>
 
@@ -26,7 +27,9 @@
 
 	<div class="book_create">
 		<h2>New book</h2>
-		<%= form_for(book) do |f| %>
+		<%= form_for(@book) do |f| %>
+
+			<%= render 'devise/shared/error_messages', resource: @book %>
 
 			<div class="row">
 				<label>Title</label>
@@ -42,4 +45,3 @@
 	</div>
 </div>
 
-</div><!--container-->
