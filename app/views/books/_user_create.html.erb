@@ -26,7 +26,7 @@
 
 	<div class="book_create">
 		<h2>New book</h2>
-		<%= form_for(resource, as: resource_name, url: books_path) do |f| %>
+		<%= form_for(book) do |f| %>
 
 			<%= render "devise/shared/error_messages", resource: resource %>
 
