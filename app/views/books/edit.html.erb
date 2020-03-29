@@ -4,7 +4,7 @@
 			<h2>Editing Book</h2>
 
 		<%= form_for(@book) do |f| %>
-			<%= render 'devise/shared/error_messages', resource: @book %>
+		<%= render 'layouts/error_message', model: f.object %>
 
 			<label>Title</label>
 			<%= f.text_field :title, autofocus:true, class:"form-control col-xs-12" %>
@@ -14,9 +14,7 @@
 			<%= f.submit "Update Book", class:"btn btn-primary col-xs-12" %>
 
 		<% end %>
-		</div><!--row-->
 
-	<div class="row">
 		<%= link_to "Show", book_path(@book) %>
 		<span>|</span>
 		<%= link_to "Back", books_path %>

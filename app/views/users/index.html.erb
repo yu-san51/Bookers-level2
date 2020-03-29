@@ -1,6 +1,8 @@
 <div class="container">
+	  <p class="notice"><%= notice %></p>
+
   <div class="row">
-	<%= render "books/user_create", user: @user, book: @book %>
+	<%= render "books/user_create" %>
 	<div class="col-xs-9">
 		<h2>Users</h2>
 		<table class="table">
@@ -15,8 +17,11 @@
 			<tbody>
 				<% @users.each do |user| %>
 					<tr>
-						<td><%= attachment_image_tag user, :profile_image, size:"100x100", fallback: "no_image.jpg" %></td>
-						<td><%= user.name %></td>
+						<td><%= attachment_image_tag user, :profile_image, size:"40x40", fallback: "no_image.jpg" %>
+						</td>
+						<td>
+							<%= user.name %>
+						</td>
 						<td></td>
 						<td><%= link_to "Show", user_path(user.id) %></td>
 					</tr>

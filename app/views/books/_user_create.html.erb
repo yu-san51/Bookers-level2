@@ -1,5 +1,7 @@
+<%= render 'layouts/error_message', model: @create_book %>
 
 <div class="col-xs-3">
+
 	<h2>User info</h2>
 	<table class="table">
 		<tbody>
@@ -21,15 +23,18 @@
 	</table>
 
 	<div class="row">
-		<%= link_to "", edit_user_path(current_user.id), class:"col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+		<% if @user == current_user %>
+			<%= link_to "", edit_user_path(current_user.id), class:"col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+		<% else %>
+			<%= link_to "", user_path(current_user.id), class:"col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+
+		<% end %>
 	</div>
 
 
 	<div class="book_create">
 		<h2>New book</h2>
-		<%= form_for(@book) do |f| %>
-
-			<%= render 'devise/shared/error_messages', resource: @book %>
+		<%= form_for(@create_book) do |f| %>
 
 			<div class="row">
 				<label>Title</label>
