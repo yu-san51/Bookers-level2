@@ -6,24 +6,24 @@
 	<table class="table">
 		<tbody>
 			<tr>
-				<td><%= attachment_image_tag @user, :profile_image, size:"100x100", format:"jpeg", fallback: "no_image.jpg" %></td>
+				<td><%= attachment_image_tag user, :profile_image, size:"100x100", format:"jpeg", fallback: "no_image.jpg" %></td>
 				<td></td>
 			</tr>
 			<tr></tr>
 			<tr>
 				<td>name</td>
-				<td><%= @user.name %></td>
+				<td><%= user.name %></td>
 			</tr>
 			<tr>
 				<td>introduction</td>
-				<td><%= @user.introduction %></td>
+				<td><%= user.introduction %></td>
 			</tr>
 
 		</tbody>
 	</table>
 
 	<div class="row">
-		<% if @user == current_user %>
+		<% if user == current_user %>
 			<%= link_to "", edit_user_path(current_user.id), class:"col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
 		<% else %>
 			<%= link_to "", user_path(current_user.id), class:"col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
@@ -31,6 +31,7 @@
 		<% end %>
 	</div>
 
+		<!--投稿フォーム-->
 
 	<div class="book_create">
 		<h2>New book</h2>

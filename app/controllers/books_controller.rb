@@ -38,6 +38,7 @@ before_action :correct_user, only: [:edit, :update, :destroy]
 			redirect_to book_path(book.id)
 			flash[:notice] = "You have updated book successfully."
 		else
+			@book = book
 			render :edit
 		end
 	end
@@ -50,7 +51,7 @@ before_action :correct_user, only: [:edit, :update, :destroy]
 
 	def correct_user
     	book = Book.find(params[:id])
-    	if current_user != book
+    	if current_user != book.user
       		redirect_to books_path
       	end
   	end
@@ -58,10 +59,10 @@ before_action :correct_user, only: [:edit, :update, :destroy]
 
 
 
-		private
-		def book_params
-			params.require(:book).permit(:title, :body)
-		end
+	private
+	def book_params
+		params.require(:book).permit(:title, :body)
+	end
 end
 
 
