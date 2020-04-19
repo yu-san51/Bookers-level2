@@ -30,6 +30,21 @@ before_action :correct_user, only: [:edit, :update]
   end
 
 
+    #フォロー詳細画面
+  def following
+    @user = User.find(params[:id])
+    @users = @user.followings
+    render "show_follow"
+  end
+
+  def followers
+    @user = User.find(params[:id])
+    @users = @user.followers
+    render "show_follower"
+  end
+
+
+
 
   private
   def user_params
@@ -42,6 +57,7 @@ before_action :correct_user, only: [:edit, :update]
       redirect_to user_path(current_user.id)
     end
   end
+
 
 end
 

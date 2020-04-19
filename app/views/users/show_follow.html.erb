@@ -1,0 +1,41 @@
+<!--フォローしているほう-->
+
+<div class="container">
+    <div class="row">
+    	<div class="col-xs-12">
+    		<h2>Follow Users</h2>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>image</th>
+						<th>name</th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @user.followings.each do |user| %>
+						<tr>
+							<td>
+								<%= attachment_image_tag user, :profile_image, size:"40x40", fallback:"no_image.jpg" %>
+							</td>
+							<td>
+								<%= user.name %>
+							</td>
+							<td>フォロー数：<%= user.followings.count %>
+							</td>
+							<td>フォロワー数：<%= user.followers.count %>
+							</td>
+							<td><%= render "relationships/follow_button", user: user %></td>
+							<td><%= link_to "Show", user_path(user.id)%></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+
+
+    	</div>
+    </div><!--row-->
+</div><!--container-->
