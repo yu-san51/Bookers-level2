@@ -16,7 +16,7 @@ class FavoritesController < ApplicationController
 		favorite = current_user.favorites.find_by(book_id: book.id)
 		favorite.destroy
 		if path[:action] == "show"
-			redirect_to book_path(bookid)
+			redirect_to book_path(book.id)
 		else
 			redirect_to books_path
 		end

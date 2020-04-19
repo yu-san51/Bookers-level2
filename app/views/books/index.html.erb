@@ -13,6 +13,7 @@
 						<th>Opinion</th>
 						<th><!--nice--></th>
 						<th><!--comment--></th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -39,6 +40,8 @@
 								<% end %>
 							<% end %>
 							</td>
+							<td>コメント数：<%= book.book_comments.count %></td>
+							<td></td>
 						</tr>
 					<% end %>
 				</tbody>
