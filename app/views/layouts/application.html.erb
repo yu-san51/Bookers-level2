@@ -48,6 +48,26 @@
 
   <%= render 'layouts/notifications' %> <!--flash-->
 
+  <!--search-->
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-8 ">
+        <% if user_signed_in? %>
+          <%= form_tag(search_path, method: :get) do %>
+
+            <%= text_field_tag(:word) %><!--検索窓-->
+
+            <%= select_tag "range", options_for_select([["User Name", "1"], ["Book Title", "2"]]) %><!--テーブル分け-->
+
+            <%= select_tag "search", options_for_select([["完全一致", "perfect_match"], ["部分一致", "partial_match"], ["前方一致", "forward_match"], ["後方一致", "backward_match"]]) %>
+
+            <%= submit_tag "検索", class:"btn btn-success" %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
 
     <%= yield %>
 

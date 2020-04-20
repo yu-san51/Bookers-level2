@@ -7,4 +7,20 @@ class Book < ApplicationRecord
 	end
 	validates :title, presence:true, length: {maximum: 200}
 	validates :body, presence:true, length: {maximum: 200}
+
+
+	#search
+	def self.search(search, word)
+		if search == "forward_match"  #前方
+			@books = Book.where("title LIKE?", "#{word}%")
+		elsif search == "backward_match"  #後方
+			@books = Book.where("title LIKE?", "%#{word}")
+		elsif search == "parfect_match"  #完全
+			@books = Book.where("#{word}")
+		elsif search == "partial_match"  #部分
+			@books = Book.where("title LIKE?", "%#{word}%")
+		else
+			@books = Book.all
+		end
+	end
 end
