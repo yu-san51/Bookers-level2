@@ -6,7 +6,7 @@ class SearchController < ApplicationController
 		word = params[:word]
 		if @range == "1"
 			@users = User.search(search, word)
-		else
+		elsif @range == "2"
 			@books = Book.search(search, word)
 		end
 	end
