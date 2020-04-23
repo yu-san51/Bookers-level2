@@ -6,7 +6,7 @@ class User < ApplicationRecord
   validates :introduction, length: {maximum: 50}
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, :confirmable
   def remember_me
   	true
   end
@@ -67,11 +67,10 @@ class User < ApplicationRecord
       self.prefecture_code = JpPrefecture::Prefecture.find(name: prefecture_name).code
     end
 
+
     def address
       "#{self.address_city} #{self.address_street} #{self.address_building}"
     end
-
-
 
 
 end
