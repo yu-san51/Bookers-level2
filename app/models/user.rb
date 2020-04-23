@@ -20,6 +20,8 @@ class User < ApplicationRecord
   has_many :followers, through: :reverse_of_relationships, source: :user
 
   attachment :profile_image
+  #geocoded_by :address
+  #after_validation :geocode
 
       #フォロー
     def follow(other_user)
@@ -45,7 +47,7 @@ class User < ApplicationRecord
       elsif search == "backward_match"  #後方
         @users = User.where("name LIKE?", "%#{word}")
       elsif search == "perfect_match"  #完全
-        @users = User.where("#{word}")
+        @users = User.where(name: "#{word}")
       elsif search == "partial_match"  #部分
         @users = User.where("name LIKE?", "%#{word}%")
       else
@@ -63,6 +65,11 @@ class User < ApplicationRecord
 
     def prefecture_name=(prefecture_name)
       self.prefecture_code = JpPrefecture::Prefecture.find(name: prefecture_name).code
+    end
+
+
+    def address
+      "#{self.address_city} #{self.address_street} #{self.address_building}"
     end
 
 
