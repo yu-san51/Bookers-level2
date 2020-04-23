@@ -20,8 +20,8 @@ class User < ApplicationRecord
   has_many :followers, through: :reverse_of_relationships, source: :user
 
   attachment :profile_image
-  geocoded_by :address
-  after_validation :geocode
+  #geocoded_by :address
+  #after_validation :geocode
 
       #フォロー
     def follow(other_user)
@@ -47,7 +47,7 @@ class User < ApplicationRecord
       elsif search == "backward_match"  #後方
         @users = User.where("name LIKE?", "%#{word}")
       elsif search == "perfect_match"  #完全
-        @users = User.where("#{word}")
+        @users = User.where(name: "#{word}")
       elsif search == "partial_match"  #部分
         @users = User.where("name LIKE?", "%#{word}%")
       else
@@ -68,20 +68,10 @@ class User < ApplicationRecord
     end
 
     def address
-      byebug
-    "#{self.address_city} #{self.address_street} #{self.address_building}"
+      "#{self.address_city} #{self.address_street} #{self.address_building}"
     end
 
 
 
-  #  private
-  #   def geocode
-  #     byebug
-  #     uri = URI.escape("https://maps.googleapis.com/maps/api/geocode/json?address="+self.address.gsub(" ", "")+"&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>")
-  #     res = HTTP.get(uri).to_s
-  #     response = JSON.parse(res)
-  #     self.latitude = response["results"][0]["geometry"]["location"]["lat"]
-  #     self.longitude = response["results"][0]["geometry"]["location"]["lng"]
-  # end
 
 end
