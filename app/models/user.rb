@@ -6,7 +6,7 @@ class User < ApplicationRecord
   validates :introduction, length: {maximum: 50}
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, :confirmable
   def remember_me
   	true
   end
@@ -20,6 +20,8 @@ class User < ApplicationRecord
   has_many :followers, through: :reverse_of_relationships, source: :user
 
   attachment :profile_image
+  #geocoded_by :address
+  #after_validation :geocode
 
       #フォロー
     def follow(other_user)
@@ -52,4 +54,23 @@ class User < ApplicationRecord
         @users = User.all
       end
     end
+
+      #address-search
+    include JpPrefecture
+    jp_prefecture :prefecture_code
+
+    def prefecture_name
+      JpPrefecture::Prefecture.find(code: prefecture_code).try(:name)
+    end
+
+    def prefecture_name=(prefecture_name)
+      self.prefecture_code = JpPrefecture::Prefecture.find(name: prefecture_name).code
+    end
+
+
+    def address
+      "#{self.address_city} #{self.address_street} #{self.address_building}"
+    end
+
+
 end
