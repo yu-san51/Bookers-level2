@@ -12,7 +12,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
    def create
      super do
-       resource.update(confirmed_at: Time.now.utc)
+       resource.skip_confirmation!
+       resource.save
      end
    end
 
