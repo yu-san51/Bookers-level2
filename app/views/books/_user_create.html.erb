@@ -32,7 +32,16 @@
 					<% end %>
 				</td>
 			</tr>
-
+			<% if user != current_user %>
+			<tr> <!--chatroom-->
+				<% if room == null %>
+				<% else %>
+					<%= link_to "#{room.receiver.name}さんとのチャットルーム", room_chat_path() %>
+				<% end%>
+					<%= link_to "#{room.receiver,name}さんとのチャットルーム",
+					new_room_path %>
+				<% end %>
+			</tr>
 		</tbody>
 	</table>
 

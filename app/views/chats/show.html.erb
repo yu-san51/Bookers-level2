@@ -1,0 +1,24 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-9">
+			<h2><%= @reciver.name %>さんとのチャットルーム</h2>
+
+			<table class="table contents_area">
+				<tbody>
+					<%= @room.chats.each do |chat| %>
+						<tr>
+							<td><%= chat.content %></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+
+			<%= form_with(model: [room, chat], remote: true) do |f| %>
+				<div class="col-xs-12">
+					<%= f.text_field :content, id: "text_field", class: "form-controll" %>
+				</div>
+				<% f.submit %>
+			<% end %>
+		</div>
+	</div>
+</div>

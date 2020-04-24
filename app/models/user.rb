@@ -18,6 +18,9 @@ class User < ApplicationRecord
   has_many :followings, through: :relationships, source: :follow
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "follow_id"
   has_many :followers, through: :reverse_of_relationships, source: :user
+  has_many :user_rooms
+  has_many :rooms, through: :user_rooms
+  has_many :chats
 
   attachment :profile_image
   #geocoded_by :address
@@ -67,10 +70,18 @@ class User < ApplicationRecord
       self.prefecture_code = JpPrefecture::Prefecture.find(name: prefecture_name).code
     end
 
-
+      #map
     def address
       "#{self.address_city} #{self.address_street} #{self.address_building}"
     end
 
 
+      #chatroomを作る
+    def room(receive_user)
+      active_user_rooms.create(receive_id: receive_user.id)
+    end
+
+    def rooming?(receive_user)
+      receive.include?(receive_user)
+    end
 end

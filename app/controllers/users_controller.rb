@@ -12,6 +12,7 @@ before_action :correct_user, only: [:edit, :update]
   	@user = User.find(params[:id])
   	@books = @user.books
     @create_book = Book.new
+    @room = Room.new
   end
 
   def edit

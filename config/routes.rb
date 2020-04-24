@@ -17,6 +17,12 @@ Rails.application.routes.draw do
   end
   delete "book_comments/:id", to: "book_comments#destroy", as: "book_comments"
   resources :relationships, only: [:create, :destroy]
+
   get "/search" => "search#search"
+
+  resources :rooms, only: [:create] do
+    resource :chats, only: [:create]
+  end
+  resources :user_rooms, only: [:create, :destroy]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -27,6 +27,8 @@ before_action :correct_user, only: [:edit, :update, :destroy]
 		@user = @book.user
 		@create_book = Book.new
 		@book_comment = BookComment.new
+		@room = Room.new
+
 	end
 
 	def edit
