@@ -1,22 +1,23 @@
 <div class="container">
 	<div class="row">
-		<div class="col-xs-9">
-			<h2><%= @reciver.name %>さんとのチャットルーム</h2>
+		<div class="col-xs-9" id="content_field">
+			<h2><%= @user.name %>さんとのチャットルーム</h2>
 
-			<table class="table contents_area">
-				<tbody>
-					<%= @room.chats.each do |chat| %>
-						<tr>
-							<td><%= chat.content %></td>
-						</tr>
+					<% @chats.each do |chat| %>
+						<% if chat.user == current_user %>
+								<p style="text-align: right;"><%= chat.content %></p>
+						<% else %>
+								<p style="text-align: left;"><%= chat.content %></p>
+						<% end %>
 					<% end %>
-				</tbody>
-			</table>
 
-			<%= form_with(model: [room, chat], remote: true) do |f| %>
+			<%= form_for @chat, remote: true do |f| %>
 				<div class="col-xs-12">
 					<%= f.text_field :content, id: "text_field", class: "form-controll" %>
 				</div>
+				<%= f.hidden_field :room_id, :value => @room.id %>
+				<%= f.hidden_field :sent_id, :value => @user.id %>
+
 				<% f.submit %>
 			<% end %>
 		</div>

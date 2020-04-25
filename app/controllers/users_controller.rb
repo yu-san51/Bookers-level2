@@ -32,18 +32,24 @@ before_action :correct_user, only: [:edit, :update]
 
 
     #フォロー詳細画面
-  def following
+  def follow
     @user = User.find(params[:id])
     @users = @user.followings
     render "show_follow"
   end
 
-  def followers
+  def followed
     @user = User.find(params[:id])
     @users = @user.followers
     render "show_follower"
   end
 
+    #チャット
+  def receiver
+    receiver = User.find(params[:id])
+    room = current_user.room(@receiver.id)
+    redirect_to room_chat_path(room.id)
+  end
 
 
 

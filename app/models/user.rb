@@ -78,10 +78,10 @@ class User < ApplicationRecord
 
       #chatroomを作る
     def room(receive_user)
-      active_user_rooms.create(receive_id: receive_user.id)
+      self.user_rooms.find_or_create_by(receive_id: receive_user.id)
     end
 
     def rooming?(receive_user)
-      receive.include?(receive_user)
+      self.receiver_id.receiverinclude?(receive_user)
     end
 end

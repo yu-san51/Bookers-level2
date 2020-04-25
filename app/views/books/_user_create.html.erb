@@ -20,26 +20,21 @@
 			</tr>
 			<tr>
 				<td>follows</td>
-				<td><%= link_to following_user_path(user.id) do %>
+				<td><%= link_to follow_user_path(user.id) do %>
 						<%= user.followings.count %>
 					<% end %>
 				</td>
 			</tr>
 			<tr>
 				<td>followers</td>
-				<td><%= link_to followers_user_path(user.id) do %>
+				<td><%= link_to followed_user_path(user.id) do %>
 						<%= user.followers.count %>
 					<% end %>
 				</td>
 			</tr>
-			<% if user != current_user %>
 			<tr> <!--chatroom-->
-				<% if room == null %>
-				<% else %>
-					<%= link_to "#{room.receiver.name}さんとのチャットルーム", room_chat_path() %>
-				<% end%>
-					<%= link_to "#{room.receiver,name}さんとのチャットルーム",
-					new_room_path %>
+				<% if user != current_user %>
+					<%= link_to "#{user.name}さんとのチャットルーム", chat_path(user.id) %>
 				<% end %>
 			</tr>
 		</tbody>

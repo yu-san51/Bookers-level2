@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :edit, :update, :index] do
     member do
-      get :following, :followers
+      get :follow, :followed
     end
   end
 
@@ -20,9 +20,9 @@ Rails.application.routes.draw do
 
   get "/search" => "search#search"
 
-  resources :rooms, only: [:create] do
-    resource :chats, only: [:create]
-  end
+  resources :rooms, only: [:create]
+  get "/chat/:id" => "chats#show", as: "chat"
+  post "/chat" => "chats#create", as: "chats"
   resources :user_rooms, only: [:create, :destroy]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
