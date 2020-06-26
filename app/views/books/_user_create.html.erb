@@ -62,7 +62,23 @@
 			<div class="row">
 				<label>Opinion</label>
 				<%= f.text_area :body, class:"form-control col-xs-12", rows:"3" %>
+			</div><br>
+			<div class="row" id="star">
+				<%= f.label :rate,'評価 ', class:'col-xs-12 col-form-label' %>
+    			<%= f.hidden_field :rate, id: :review_star %>
 			</div>
+
+			<script>
+			  $('#star').raty({
+			    size     : 36,
+			    starOff:  '<%= asset_path('star-off.png') %>',
+			    starOn : '<%= asset_path('star-on.png') %>',
+			    starHalf: '<%= asset_path('star-half.png') %>',
+			    scoreName: 'book[rate]',
+			    half: true,
+			  });
+			</script>
+
 			<br>
 			<%= f.submit "Create Book", class:"btn btn-primary col-xs-12" %>
 		<% end %>
